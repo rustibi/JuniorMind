@@ -18,6 +18,12 @@ namespace FizzBuzz
             Assert.AreEqual("Buzz", CalculateFizzBuzz(5));
         }
 
+        [TestMethod]
+        public void DivisibleByThree()
+        {
+            Assert.AreEqual("Fizz", CalculateFizzBuzz(3));
+        }
+
 
         string CalculateFizzBuzz(int number)
         {
@@ -30,6 +36,12 @@ namespace FizzBuzz
             else if (number % 5 == 0)
             {
                 result = "Buzz";
+                return result;
+            }
+
+            else if (number % 3 == 0)
+            {
+                result = "Fizz";
                 return result;
             }
 
