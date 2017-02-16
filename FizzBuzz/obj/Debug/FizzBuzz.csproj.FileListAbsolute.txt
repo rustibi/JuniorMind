@@ -1,0 +1,6 @@
+D:\Tibi\VisualStudio\Lesson - 01\JuniorMind\FizzBuzz\bin\Debug\FizzBuzz.dll
+D:\Tibi\VisualStudio\Lesson - 01\JuniorMind\FizzBuzz\bin\Debug\FizzBuzz.pdb
+D:\Tibi\VisualStudio\Lesson - 01\JuniorMind\FizzBuzz\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Tibi\VisualStudio\Lesson - 01\JuniorMind\FizzBuzz\obj\Debug\FizzBuzz.csprojResolveAssemblyReference.cache
+D:\Tibi\VisualStudio\Lesson - 01\JuniorMind\FizzBuzz\obj\Debug\FizzBuzz.dll
+D:\Tibi\VisualStudio\Lesson - 01\JuniorMind\FizzBuzz\obj\Debug\FizzBuzz.pdb
