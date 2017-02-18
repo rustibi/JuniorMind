@@ -31,6 +31,12 @@ namespace TaxiFare
             Assert.AreEqual(7, CalculateTaxiFare(1, 21));
         }
 
+        [TestMethod]
+        public void NightTimeFareForMediumDistances()
+        {
+            Assert.AreEqual(210, CalculateTaxiFare(21, 21));
+        }
+
 
 
 
@@ -43,7 +49,7 @@ namespace TaxiFare
         decimal[] GetPrices(int hour)
         {
             decimal[] dayTimePrices = { 5, 8, 6 };
-            decimal[] nightTimePrices = { 7 };
+            decimal[] nightTimePrices = { 7, 10 };
             return IsDayTime(hour) ? dayTimePrices : nightTimePrices;
             
         }
