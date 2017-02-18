@@ -4,11 +4,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MelonSplit
 {
     [TestClass]
-    public class UnitTest1
+    public class MelonSplitTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void WeightMelonEven()
         {
+            Assert.AreEqual("Da", CalculateMelonSplit(2));
         }
+
+        string CalculateMelonSplit(int weight)
+        {
+            return "Da";
+        }
+
     }
 }
