@@ -11,13 +11,6 @@ namespace LandFarmer
         {
             Assert.AreEqual(1770, CalculateSqrtDelta(1, 230, -770000));
         }
-
-        [TestMethod]
-        public void DeltaEqualToZero()
-        {
-            Assert.AreEqual(0, CalculateSqrtDelta(0, 0, 0));
-        }
-
         
         [TestMethod]
         public void CalculateInitialArea()
@@ -31,9 +24,7 @@ namespace LandFarmer
         double CalculateSqrtDelta(float a, float b, float c)
         {
             double dt = b * b - 4 * a * c;
-            if (dt == 0) {
-                return 0;
-            }
+            
             if (dt < 0) {
                 Console.WriteLine("The Equation has complex solution!");
             }
