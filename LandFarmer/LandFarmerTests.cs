@@ -9,15 +9,27 @@ namespace LandFarmer
         [TestMethod]
         public void DeltaGreaterThenZero()
         {
-            Assert.AreEqual(3132900, CalculateDelta(1, 230, -770000));
+            Assert.AreEqual(1770, CalculateSqrtDelta(1, 230, -770000));
         }
 
-
-       
-        float CalculateDelta(float a, float b, float c)
+        [TestMethod]
+        public void CalculateInitialArea()
         {
-            float dt = b * b - 4 * a * c;
-            return dt;
+            Assert.AreEqual(770, CalculateInitialArea(1, 230, -770000));
+        }
+
+        
+        double CalculateSqrtDelta(float a, float b, float c)
+        {
+            double dt = b * b - 4 * a * c;
+            return Math.Sqrt(dt);
+        }
+
+        double CalculateInitialArea(float a, float b, float c)
+        {
+
+            return (-b + CalculateSqrtDelta(a, b, c)) / (2 * a);
+            
         }
 
         
