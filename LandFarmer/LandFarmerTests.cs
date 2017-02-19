@@ -34,6 +34,9 @@ namespace LandFarmer
             if (dt == 0) {
                 return 0;
             }
+            if (dt < 0) {
+                Console.WriteLine("The Equation has complex solution!");
+            }
             return Math.Sqrt(dt);
         }
 
