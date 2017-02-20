@@ -19,9 +19,20 @@ namespace MonthRent
         }
 
 
+        [TestMethod]
+        public void OverThirtyDelayDays()
+        {
+            Assert.AreEqual(410, CalculateTotalRentCost(100, 31));
+        }
+
+
         int CalculateTotalRentCost(int monthRent, int delayDays)
         {
-            int penaltyRate = delayDays > 10 ? 5 : 2;
+            int penaltyRate = 2;
+            if (delayDays > 30)
+                penaltyRate = 10;
+            else if (delayDays > 10)
+                penaltyRate = 5;
             return monthRent + monthRent * delayDays * penaltyRate / 100;
         }
     }
