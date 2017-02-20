@@ -31,6 +31,12 @@ namespace ArabicToRomanConverter
             Assert.AreEqual("XL", ArabicToRomanConverter(40));
         }
 
+        [TestMethod]
+        public void ConvertToThreeDigitsRomanXLV()
+        {
+            Assert.AreEqual("XLV", ArabicToRomanConverter(45));
+        }
+
         string ArabicToRomanConverter(int number)
         {
             string[] romanNo = { "I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM","M" };
