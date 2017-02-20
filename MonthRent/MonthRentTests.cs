@@ -4,11 +4,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MonthRent
 {
     [TestClass]
-    public class UnitTest1
+    public class MonthRentTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void UnderTenDelayDays()
         {
+            Assert.AreEqual(104, CalculateTotalRentCost(100, 2));
+        }
+
+        int CalculateTotalRentCost(int monthRent, int delayDays)
+        {
+            return monthRent + monthRent*2/100*delayDays;
         }
     }
 }
