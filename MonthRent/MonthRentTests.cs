@@ -26,14 +26,24 @@ namespace MonthRent
         }
 
 
+
+
         int CalculateTotalRentCost(int monthRent, int delayDays)
         {
-            int penaltyRate = 2;
+            return monthRent + monthRent * delayDays * GetPenaltyRate(delayDays) / 100;
+        }
+
+
+
+        int GetPenaltyRate(int delayDays)
+        {
+            int[] penaltyRate = { 2, 5, 10 };
+
             if (delayDays > 30)
-                penaltyRate = 10;
-            else if (delayDays > 10)
-                penaltyRate = 5;
-            return monthRent + monthRent * delayDays * penaltyRate / 100;
+                return penaltyRate[2];
+            if (delayDays > 10)
+                return penaltyRate[1];
+            return penaltyRate[0];
         }
     }
 }
