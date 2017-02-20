@@ -43,6 +43,13 @@ namespace ArabicToRomanConverter
             Assert.AreEqual("XCIX", ArabicToRomanConverter(99));
         }
 
+
+        [TestMethod]
+        public void ConvertToNineDigitsRomanMMMCMXCIX()
+        {
+            Assert.AreEqual("MMMCMXCIX", ArabicToRomanConverter(3999));
+        }
+
         string ArabicToRomanConverter(int number)
         {
             string[] romanNo = { "I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM","M" };
@@ -53,11 +60,8 @@ namespace ArabicToRomanConverter
                 while (number >= arabicNo[i])
                 {
                     lst = lst+romanNo[i];
-                    number = number - arabicNo[i];
-                   
-                    
+                    number = number - arabicNo[i];  
                 } 
-
             }
             return lst;
             
