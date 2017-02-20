@@ -19,16 +19,24 @@ namespace ArabicToRomanConverter
             Assert.AreEqual("L", ArabicToRomanConverter(50));
         }
 
+        [TestMethod]
+        public void ConvertToTwoDigitsRomanLV()
+        {
+            Assert.AreEqual("LV", ArabicToRomanConverter(55));
+        }
+
         string ArabicToRomanConverter(int number)
         {
             string[] romanNo = { "I", "V", "X", "L", "C", "D", "M" };
             int[] arabicNo = { 1, 5, 10, 50, 100, 500, 1000 };
             string lst = string.Empty;
-            for(int i = 0; i<arabicNo.Count()-1; i++)
+            for (int i = arabicNo.Count() - 1; i > 0; i--)
             {
-                if (number == arabicNo[i])
+                while (number >= arabicNo[i])
                 {
-                    return lst = lst+romanNo[i];
+                    lst = lst+romanNo[i];
+                    number = number - arabicNo[i];
+                   
                     
                 } 
 
