@@ -23,14 +23,14 @@ namespace ArabicToRomanVer2
 
         string ArabicToRomanVer2 (int number)
         {
-            string[] tens = { " ", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
-            string[] ones = {" ","I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+            string[] tens = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+            string[] ones = {"","I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
             
-        //  int[] arabic = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+          int[] arabic = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             string romanNo = string.Empty;
 
-            romanNo = romanNo + tens[(int)(number / 10)];
-            romanNo = ones[number];
+            romanNo = romanNo + tens[(number / 10)];
+            romanNo = romanNo + ones[number % 10];
 
 
             return romanNo;
