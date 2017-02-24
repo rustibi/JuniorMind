@@ -12,9 +12,25 @@ namespace ChessBoard
             Assert.AreEqual(5, CalculateSquares(2, 2));
         }
 
+        [TestMethod]
+        public void SquaresOnAThreeByThreeBoard()
+        {
+            Assert.AreEqual(14, CalculateSquares(3, 3));
+        }
+
+
+
+
         int CalculateSquares(int length, int width)
         {
-            return length * width + 1;
+            int squaresNo = 1;
+            while (length-1 > 0)
+            {
+                squaresNo += length * length;
+                length -= 1;
+            }
+            
+            return squaresNo;
         }
     }
 }
