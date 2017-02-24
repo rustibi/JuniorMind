@@ -9,13 +9,19 @@ namespace Anagrams
         [TestMethod]
         public void TwoLettersWord()
         {
-            Assert.AreEqual(2, CalculateAnagram("da"));
+            Assert.AreEqual(2, CalculateAnagram("no"));
         }
 
-        
-        int CalculateAnagram(string Anagram)
+        [TestMethod]
+        public void ThreeLettersWord()
         {
-            return 2;
+            Assert.AreEqual(6, CalculateAnagram("yes"));
+        }
+
+
+        int CalculateAnagram(string anagram)
+        {
+            return (anagram.Length) * (anagram.Length-1);
         }
     }
 }
