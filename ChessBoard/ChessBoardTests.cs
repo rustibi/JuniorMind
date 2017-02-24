@@ -4,11 +4,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ChessBoard
 {
     [TestClass]
-    public class UnitTest1
+    public class ChessBoardTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void SquaresOnATwoByTwoBoard()
         {
+            Assert.AreEqual(5, CalculateSquares(2, 2));
+        }
+
+        int CalculateSquares(int length, int width)
+        {
+            return length * width + 1;
         }
     }
 }
