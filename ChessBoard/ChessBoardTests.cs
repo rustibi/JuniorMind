@@ -9,21 +9,29 @@ namespace ChessBoard
         [TestMethod]
         public void SquaresOnATwoByTwoBoard()
         {
-            Assert.AreEqual(5, CalculateSquares(2, 2));
+            Assert.AreEqual(5, CalculateSquares(2));
         }
 
         [TestMethod]
         public void SquaresOnAThreeByThreeBoard()
         {
-            Assert.AreEqual(14, CalculateSquares(3, 3));
+            Assert.AreEqual(14, CalculateSquares(3));
+        }
+
+
+        [TestMethod]
+        public void SquaresOnAEightByEightBoard()
+        {
+            Assert.AreEqual(204, CalculateSquares(8));
         }
 
 
 
 
-        int CalculateSquares(int length, int width)
+        int CalculateSquares(int length)
         {
-            int squaresNo = 1;
+            //conditia este ca "length" sa fie mare mare sau egal cu 1
+            int squaresNo = 1; 
             while (length-1 > 0)
             {
                 squaresNo += length * length;
