@@ -23,15 +23,16 @@ namespace Prefix
 
         string ComparePrefix(string a, string b)
         {
-            var builder = new StringBuilder();
+            //var builder = new StringBuilder();
+            string builder = "";
             for (int i = 0; i < CompareStringsLength(a, b).Length-1; i++)
             {
                 if (a[i] == b[i])
-                    builder.Append(CompareStringsLength(a, b)[i]);
+                    builder = builder + (CompareStringsLength(a, b)[i]);
                 else
                     break;
             }
-            return builder.ToString();
+            return builder;
 
 
         }
