@@ -9,10 +9,18 @@ namespace Panagram
         [TestMethod]
         public void CountEqualLetters()
         {
-            Assert.AreEqual(26, CalculatePanagram("the quick brown fox jumps over the lazy dog"));
+            Assert.AreEqual(true, CalculatePanagram("the quick brown fox jumps over the lazy dog"));
         }
 
-        int CalculatePanagram(string IsPanagram)
+        [TestMethod]
+        public void CountEqualLettersFalse()
+        {
+            Assert.AreEqual(false, CalculatePanagram("the quic brown fox jumps over the lazy dog"));
+        }
+
+
+
+        bool CalculatePanagram(string IsPanagram)
         {
             string dictionary = "abcdefghijklmnopqrstuvwxyz";
             int count = 0;
@@ -28,10 +36,13 @@ namespace Panagram
                     }
                 }
             }
-            return count;
+
+            return (count == 26 ? true : false);
 
         }
 
+       
 
+        
     }
 }
