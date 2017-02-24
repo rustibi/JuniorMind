@@ -7,13 +7,13 @@ namespace Panagram
     public class PanagramTests
     {
         [TestMethod]
-        public void CountEqualLetters()
+        public void CheckTruePanagram()
         {
             Assert.AreEqual(true, CalculatePanagram("the quick brown fox jumps over the lazy dog"));
         }
 
         [TestMethod]
-        public void CountEqualLettersFalse()
+        public void CheckFalsePanagram()
         {
             Assert.AreEqual(false, CalculatePanagram("the quic brown fox jumps over the lazy dog"));
         }
