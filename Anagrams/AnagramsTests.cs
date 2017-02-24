@@ -18,10 +18,27 @@ namespace Anagrams
             Assert.AreEqual(6, CalculateAnagram("yes"));
         }
 
+        [TestMethod]
+        public void FourLettersWord()
+        {
+            Assert.AreEqual(24, CalculateAnagram("sure"));
+        }
+
+       
+
 
         int CalculateAnagram(string anagram)
         {
-            return (anagram.Length) * (anagram.Length-1);
+            int countAnagrams = 1;
+            int length = anagram.Length;
+            while (length >= 1) 
+            {
+                countAnagrams *= length;
+                length -= 1;
+
+            }
+            return countAnagrams;
+            
         }
     }
 }
