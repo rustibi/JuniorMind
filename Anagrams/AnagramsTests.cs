@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Anagrams
 {
@@ -24,21 +25,59 @@ namespace Anagrams
             Assert.AreEqual(24, CalculateAnagram("sure"));
         }
 
-       
-
-
-        int CalculateAnagram(string anagram)
+        [TestMethod]
+        public void CalculateFactFrequencyProductForThreeSameLetters()
         {
-            int countAnagrams = 1;
-            int length = anagram.Length;
-            while (length >= 1) 
+            Assert.AreEqual(6, CalculateFactFrequencyProduct("severe"));
+        }
+
+
+
+        int CalculateFactFrequencyProduct(string word)
+        {
+            //int count = 0;
+            int finalCount = 1;
+            string dictionary = "abcdefghijklmnopqrstuvwxyz";
+
+            for (int i = 0; i < dictionary.Length; i++)
             {
-                countAnagrams *= length;
-                length -= 1;
+                int count = 0;
+                for (int j = 0; j < word.Length; j++)
+                {
+                    if (dictionary[i] == word[j])
+                    {
+                        count += 1;
+                        finalCount = finalCount * count;
+
+                    } 
+                }
+            }
+           
+         return finalCount;
+        }
+
+
+            int CalculateAnagram(string anagram)
+                {
+                int countAnagrams = 1;
+                int length = anagram.Length;
+
+                while (length >= 1)
+                {
+                    
+                    countAnagrams *= length;
+                    length -= 1;
+
+                }
+
+                return countAnagrams;
+
 
             }
-            return countAnagrams;
-            
+
+
+
         }
     }
-}
+
+
