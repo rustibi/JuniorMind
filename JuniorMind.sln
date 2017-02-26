@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anagrams", "Anagrams\Anagrams.csproj", "{AE7996DA-51F3-4E1D-86CC-89B9C50E165E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelColumnNumbers", "ExcelColumnNumbers\ExcelColumnNumbers.csproj", "{4148929C-D7A3-44D8-9A38-534EA81A9606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE7996DA-51F3-4E1D-86CC-89B9C50E165E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE7996DA-51F3-4E1D-86CC-89B9C50E165E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE7996DA-51F3-4E1D-86CC-89B9C50E165E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE7996DA-51F3-4E1D-86CC-89B9C50E165E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4148929C-D7A3-44D8-9A38-534EA81A9606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4148929C-D7A3-44D8-9A38-534EA81A9606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4148929C-D7A3-44D8-9A38-534EA81A9606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4148929C-D7A3-44D8-9A38-534EA81A9606}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
