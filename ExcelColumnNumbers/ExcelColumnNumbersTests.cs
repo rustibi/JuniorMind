@@ -4,11 +4,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ExcelColumnNumbers
 {
     [TestClass]
-    public class UnitTest1
+    public class ExcelColumnNumbersTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void OneLetterColumn()
         {
+            Assert.AreEqual('b', CalculateExcelNumbers(2));
         }
+
+        char CalculateExcelNumbers (int columnNo)
+        {   
+            return (char)('a' + columnNo - 1);
+        }
+
     }
 }
