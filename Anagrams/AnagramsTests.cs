@@ -31,11 +31,16 @@ namespace Anagrams
             Assert.AreEqual(6, CalculateFactFrequencyProduct("severe"));
         }
 
+        [TestMethod]
+        public void CalculateFactFrequencyProductForThreeAndForSameLetters()
+        {
+            Assert.AreEqual(144, CalculateFactFrequencyProduct("severerre"));
+        }
+
 
 
         int CalculateFactFrequencyProduct(string word)
         {
-            //int count = 0;
             int finalCount = 1;
             string dictionary = "abcdefghijklmnopqrstuvwxyz";
 
@@ -48,14 +53,11 @@ namespace Anagrams
                     {
                         count += 1;
                         finalCount = finalCount * count;
-
                     } 
                 }
             }
-           
-         return finalCount;
-        }
-
+            return finalCount;
+          }
 
             int CalculateAnagram(string anagram)
                 {
@@ -64,20 +66,13 @@ namespace Anagrams
 
                 while (length >= 1)
                 {
-                    
                     countAnagrams *= length;
                     length -= 1;
-
                 }
-
-                return countAnagrams;
-
-
+                return countAnagrams / CalculateFactFrequencyProduct(anagram);
             }
 
-
-
-        }
-    }
+     }
+}
 
 
