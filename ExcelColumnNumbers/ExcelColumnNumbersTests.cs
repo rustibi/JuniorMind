@@ -6,16 +6,11 @@ namespace ExcelColumnNumbers
     [TestClass]
     public class ExcelColumnNumbersTests
     {
+        
         [TestMethod]
-        public void OneLetterColumn()
+        public void OneLettersColumn()
         {
-            Assert.AreEqual("b", CalculateExcelColumnNumber(2));
-        }
-
-        [TestMethod]
-        public void TwoLettersColumn()
-        {
-            Assert.AreEqual("aa", CalculateExcelColumnNumber(27));
+            Assert.AreEqual("a", CalculateExcelColumnNumber(1));
         }
 
         [TestMethod]
@@ -25,34 +20,33 @@ namespace ExcelColumnNumbers
         }
 
         [TestMethod]
-        public void ThreeLettersColumn()
+        public void TwoLettersColumn3()
         {
-            Assert.AreEqual("aaa", CalculateExcelColumnNumber(53));
+            Assert.AreEqual("ba", CalculateExcelColumnNumber(53));
         }
 
         [TestMethod]
-        public void ThreeLettersColumn2()
+        public void ThreeLettersColumn1()
         {
-            Assert.AreEqual("aab", CalculateExcelColumnNumber(54));
+            Assert.AreEqual("aaa", CalculateExcelColumnNumber(703));
         }
 
 
 
 
-        string CalculateExcelColumnNumber (int columnNo)
+        string CalculateExcelColumnNumber(int columnNo)
         {
             int constant = 26;
-            string constantCount = String.Empty;
             string columnInLetters = String.Empty;
+            int count = 0;
 
-            while (columnNo >= 27)
+            while (columnNo > 0)
             {
-                columnNo = columnNo - constant;
-                constantCount += "a";
+                count = (columnNo-1) % constant;
+                columnInLetters = (char)('a' + count) + columnInLetters;
+                columnNo = (columnNo - count) / constant;
             }
-
-            columnInLetters = constantCount + (char)('a' + columnNo - 1);
-
+            
             return columnInLetters;
         }
 
