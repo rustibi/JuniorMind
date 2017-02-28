@@ -31,11 +31,10 @@ namespace ExcelColumnNumbers
             Assert.AreEqual("aaa", CalculateExcelColumnNumber(703));
         }
 
+        
 
-
-
-        string CalculateExcelColumnNumber(int columnNo)
-        {
+            string CalculateExcelColumnNumber(int columnNo)
+            {
             int constant = 26;
             string columnInLetters = String.Empty;
             int count = 0;
@@ -44,10 +43,12 @@ namespace ExcelColumnNumbers
             {
                 count = (columnNo-1) % constant;
                 columnInLetters = (char)('a' + count) + columnInLetters;
-                columnNo = (columnNo - count) / constant;
+                columnNo =(columnNo - count) / constant;
             }
-            
+
             return columnInLetters;
+            
+            
         }
 
     }
