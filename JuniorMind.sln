@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotoOdds", "LotoOdds\LotoOdds.csproj", "{56791B03-3347-4C4E-976B-EF0B3F88D1DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binary", "Binary\Binary.csproj", "{DC6C9BE7-62E5-4936-836F-EF1E64EE9FDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{56791B03-3347-4C4E-976B-EF0B3F88D1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56791B03-3347-4C4E-976B-EF0B3F88D1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56791B03-3347-4C4E-976B-EF0B3F88D1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56791B03-3347-4C4E-976B-EF0B3F88D1DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6C9BE7-62E5-4936-836F-EF1E64EE9FDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6C9BE7-62E5-4936-836F-EF1E64EE9FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6C9BE7-62E5-4936-836F-EF1E64EE9FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6C9BE7-62E5-4936-836F-EF1E64EE9FDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
