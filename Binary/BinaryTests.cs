@@ -8,19 +8,36 @@ namespace Binary
     public class BinaryTests
     {
         [TestMethod]
-        public void DecimalBinary()
+        public void DecimalBinary_0()
         {
             byte[] binar = { 0 };
             CollectionAssert.AreEqual(binar, DecimalToBinary(0));
         }
 
+        [TestMethod]
+        public void DecimalBinary_3()
+        {
+            byte[] binar = { 1, 1 };
+            CollectionAssert.AreEqual(binar, DecimalToBinary(3));
+        }
+
+
+
         List<byte> DecimalToBinary (int number)
         {
             List<byte> binar = new List<byte>();
-          
-            binar.Insert(0, 0);
-            return binar;
 
+            if (number == 0)
+            {
+                binar.Insert(0, 0);
+            }
+            
+            while (number > 0)
+            {
+                binar.Insert(0, (byte)(number % 2));
+                number = number / 2;
+            }
+            return binar;
         }
     }
 }
