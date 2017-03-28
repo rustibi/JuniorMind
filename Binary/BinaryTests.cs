@@ -14,11 +14,28 @@ namespace Binary
             CollectionAssert.AreEqual(binar, DecimalToBinary(0));
         }
 
+
         [TestMethod]
         public void DecimalBinary_3()
         {
             byte[] binar = { 1, 1 };
             CollectionAssert.AreEqual(binar, DecimalToBinary(3));
+        }
+
+
+        [TestMethod]
+        public void DecimalBinary_5()
+        {
+            byte[] binar = { 1, 0, 1 };
+            CollectionAssert.AreEqual(binar, DecimalToBinary(5));
+        }
+
+
+        [TestMethod]
+        public void DecimalBinary_49()
+        {
+            byte[] binar = { 1, 1, 0, 0, 0, 1 };
+            CollectionAssert.AreEqual(binar, DecimalToBinary(49));
         }
 
 
