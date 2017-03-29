@@ -38,6 +38,31 @@ namespace Binary
             CollectionAssert.AreEqual(binar, DecimalToBinary(49));
         }
 
+        [TestMethod]
+        public void DecimalBinary_NOT49()
+        {
+            byte[] binar = { 0, 0, 1, 1, 1, 0 };
+            CollectionAssert.AreEqual(binar, NOT(49));
+        }
+
+
+
+   
+        List<byte> NOT (int number)
+        {
+            List<byte> binarList = new List<byte>();
+            binarList = DecimalToBinary(number);
+            for (int i = 0; i < binarList.Count; i++) 
+            {
+                if (binarList[i] == 0)
+                    binarList[i] = 1;
+                else    
+                    binarList[i] = 0;
+            }
+            return binarList;
+        }
+
+
 
 
         List<byte> DecimalToBinary (int number)
