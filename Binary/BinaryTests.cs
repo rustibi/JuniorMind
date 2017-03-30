@@ -59,6 +59,39 @@ namespace Binary
             CollectionAssert.AreEqual(binar, AND(5, 3));
         }
 
+        [TestMethod]
+        public void DecimalBinary_XOR_5_3()
+        {
+            byte[] binar = { 1, 1, 0 };
+            CollectionAssert.AreEqual(binar, XOR(5, 3));
+        }
+
+
+        List<byte> XOR(int number1, int number2)
+        {
+            List<byte> binarList1 = new List<byte>();
+            List<byte> binarList2 = new List<byte>();
+            List<byte> binarList3 = new List<byte>();
+            binarList1 = DecimalToBinary(number1);
+            binarList2 = DecimalToBinary(number2);
+
+            while (binarList1.Count != binarList2.Count)
+            {
+                if (binarList1.Count < binarList2.Count)
+                    binarList1.Insert(0, 0);
+                else
+                    binarList2.Insert(0, 0);
+            }
+
+            for (int i = 0; i < binarList1.Count; i++)
+            {
+                if ((binarList1[i] == 1 && binarList2[i] == 0) || (binarList1[i] == 0 && binarList2[i] == 1))
+                    binarList3.Add(1);
+                else
+                    binarList3.Add(0);
+            }
+            return binarList3;
+        }
 
 
         List<byte> AND(int number1, int number2)
@@ -85,8 +118,8 @@ namespace Binary
                     binarList3.Add(0);
             }
             return binarList3;
-
         }
+
 
         List<byte> OR (int number1, int number2)
         {
@@ -112,9 +145,7 @@ namespace Binary
                     binarList3.Add(0);
             }
             return binarList3;
-
         }
-
 
    
         List<byte> NOT (int number)
@@ -130,8 +161,6 @@ namespace Binary
             }
             return binarList;
         }
-
-
 
 
         List<byte> DecimalToBinary (int number)
