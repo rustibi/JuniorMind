@@ -45,6 +45,40 @@ namespace Binary
             CollectionAssert.AreEqual(binar, NOT(49));
         }
 
+        [TestMethod]
+        public void DecimalBinary_OR_5_3()
+        {
+            byte[] binar = { 1, 1, 1};
+            CollectionAssert.AreEqual(binar, OR(5, 3));
+        }
+
+
+        List<byte> OR (int number1, int number2)
+        {
+            List<byte> binarList1 = new List<byte>();
+            List<byte> binarList2 = new List<byte>();
+            List<byte> binarList3 = new List<byte>();
+            binarList1 = DecimalToBinary(number1);
+            binarList2 = DecimalToBinary(number2);
+
+            while (binarList1.Count != binarList2.Count)
+            {
+                if (binarList1.Count < binarList2.Count)
+                    binarList1.Insert(0, 0);
+                else
+                    binarList2.Insert(0, 0);
+            }
+
+            for (int i = 0; i < binarList1.Count; i++)
+            {
+                if (binarList1[i] == 1 || binarList2[i] == 1)
+                    binarList3.Add(1);
+                else
+                    binarList3.Add(0);
+            }
+            return binarList3;
+
+        }
 
 
    
