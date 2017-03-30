@@ -66,6 +66,54 @@ namespace Binary
             CollectionAssert.AreEqual(binar, XOR(5, 3));
         }
 
+        [TestMethod]
+        public void DecimalBinary_LeftShift_1_3()
+        {
+            byte[] binar = { 1, 0, 0, 0 };
+            CollectionAssert.AreEqual(binar, LeftShift(1, 3));
+        }
+
+        [TestMethod]
+        public void DecimalBinary_RightShift_1_3()
+        {
+            byte[] binar = { 0, 0, 0, 1 };
+            CollectionAssert.AreEqual(binar, RightShift(8, 3));
+        }
+
+
+
+        List<byte> RightShift(int number, int noOfPositions)
+        {
+            List<byte> binarList1 = new List<byte>();
+            binarList1 = DecimalToBinary(number);
+            while (noOfPositions > 0)
+            {
+                number /= 2;
+                noOfPositions -= 1;
+            }
+            List<byte> binarList2 = new List<byte>();
+            binarList2 = DecimalToBinary(number);
+
+            while (binarList2.Count < binarList1.Count)
+            {
+                binarList2.Insert(0, 0);
+            }
+            return binarList2;
+        }
+
+
+        List<byte> LeftShift(int number, int noOfPositions)
+        {
+            List<byte> binarList = new List<byte>();
+            while (noOfPositions > 0)
+            {
+                number *= 2;
+                noOfPositions -= 1;
+            }
+            binarList = DecimalToBinary(number);
+            return binarList;
+        }
+
 
         List<byte> XOR(int number1, int number2)
         {
@@ -74,7 +122,6 @@ namespace Binary
             List<byte> binarList3 = new List<byte>();
             binarList1 = DecimalToBinary(number1);
             binarList2 = DecimalToBinary(number2);
-
             while (binarList1.Count != binarList2.Count)
             {
                 if (binarList1.Count < binarList2.Count)
