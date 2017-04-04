@@ -115,13 +115,8 @@ namespace Binary
         }
 
 
-        List<byte> XOR(int number1, int number2)
+        void InsertZeroToLists(List<byte> binarList1, List<byte> binarList2)
         {
-            List<byte> binarList1 = new List<byte>();
-            List<byte> binarList2 = new List<byte>();
-            List<byte> binarList3 = new List<byte>();
-            binarList1 = DecimalToBinary(number1);
-            binarList2 = DecimalToBinary(number2);
             while (binarList1.Count != binarList2.Count)
             {
                 if (binarList1.Count < binarList2.Count)
@@ -129,6 +124,18 @@ namespace Binary
                 else
                     binarList2.Insert(0, 0);
             }
+        }
+
+
+        List<byte> XOR(int number1, int number2)
+        {
+            List<byte> binarList1 = new List<byte>();
+            List<byte> binarList2 = new List<byte>();
+            List<byte> binarList3 = new List<byte>();
+            binarList1 = DecimalToBinary(number1);
+            binarList2 = DecimalToBinary(number2);
+
+            InsertZeroToLists(binarList1, binarList2);
 
             for (int i = 0; i < binarList1.Count; i++)
             {
@@ -149,13 +156,7 @@ namespace Binary
             binarList1 = DecimalToBinary(number1);
             binarList2 = DecimalToBinary(number2);
 
-            while (binarList1.Count != binarList2.Count)
-            {
-                if (binarList1.Count < binarList2.Count)
-                    binarList1.Insert(0, 0);
-                else
-                    binarList2.Insert(0, 0);
-            }
+            InsertZeroToLists(binarList1, binarList2);
 
             for (int i = 0; i < binarList1.Count; i++)
             {
@@ -176,14 +177,8 @@ namespace Binary
             binarList1 = DecimalToBinary(number1);
             binarList2 = DecimalToBinary(number2);
 
-            while (binarList1.Count != binarList2.Count)
-            {
-                if (binarList1.Count < binarList2.Count)
-                    binarList1.Insert(0, 0);
-                else
-                    binarList2.Insert(0, 0);
-            }
-
+            InsertZeroToLists(binarList1, binarList2);
+            
             for (int i = 0; i < binarList1.Count; i++)
             {
                 if (binarList1[i] == 1 || binarList2[i] == 1)
