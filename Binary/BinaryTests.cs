@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Binary
 {
@@ -78,6 +79,52 @@ namespace Binary
         {
             byte[] binar = { 0, 0, 0, 1 };
             CollectionAssert.AreEqual(binar, RightShift(8, 3));
+        }
+
+        [TestMethod]
+        public void DecimalBinary_Add_127_15()
+        {
+            byte[] binar = { 1, 0, 0, 0, 1, 1, 1, 0 };
+            CollectionAssert.AreEqual(binar, AddBinar(127, 15));
+        }
+
+
+        List<byte> AddBinar(int number1, int number2)
+        {
+            List<byte> binarList1 = new List<byte>();
+            List<byte> binarList2 = new List<byte>();
+            List<byte> binarList3 = new List<byte>();
+            binarList1 = DecimalToBinary(number1);
+            binarList2 = DecimalToBinary(number2);
+            InsertZeroToLists(binarList1, binarList2);
+            
+            byte carry = 0;
+
+            for (int i = binarList1.Count-1; i >= 0; i--)
+            {
+                if (binarList1[i] == 1 && binarList2[i] == 1)
+                {
+                    binarList3.Add((byte)(0 + carry));
+                    carry = 1;
+                }
+                else if ((binarList1[i] == 1 && binarList2[i] == 0) || (binarList1[i] == 0 && binarList2[i] == 1))
+                {
+                    binarList3.Add((byte)(carry == 1 ? 0 : 1));
+                    if (carry == 1)
+                        carry = 1;
+                    else
+                        carry = 0;
+                }
+                else if (binarList1[i] == 0 && binarList2[i] == 0)
+                {
+                    binarList3.Add((byte)(carry == 1 ? 1 : 0));
+                    carry = 0;
+                }
+            }
+            binarList3.Reverse();
+            if (carry == 1)
+                binarList3.Insert(0, 1);
+            return binarList3;
         }
 
 
