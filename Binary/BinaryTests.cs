@@ -49,7 +49,7 @@ namespace Binary
         [TestMethod]
         public void DecimalBinary_OR_5_3()
         {
-            byte[] binar = { 1, 1, 1};
+            byte[] binar = { 1, 1, 1 };
             CollectionAssert.AreEqual(binar, OR(5, 3));
         }
 
@@ -85,48 +85,73 @@ namespace Binary
         public void DecimalBinary_Add_127_15()
         {
             byte[] binar = { 1, 0, 0, 0, 1, 1, 1, 0 };
-            CollectionAssert.AreEqual(binar, AddBinar(127, 15));
+            CollectionAssert.AreEqual(binar, AddBinary(127, 15));
+        }
+
+        [TestMethod]
+        public void DecimalBinary_Substraction_127_15()
+        {
+            byte[] binar = { 0, 0, 0, 1, 1, 1, 0, 1 };
+            CollectionAssert.AreEqual(binar, SubstrBinary(142, 113));
         }
 
 
-        List<byte> AddBinar(int number1, int number2)
+        List<byte> SubstrBinary(int number1, int number2)
         {
             List<byte> binarList1 = new List<byte>();
             List<byte> binarList2 = new List<byte>();
-            List<byte> binarList3 = new List<byte>();
             binarList1 = DecimalToBinary(number1);
             binarList2 = DecimalToBinary(number2);
             InsertZeroToLists(binarList1, binarList2);
-            
-            byte carry = 0;
+            List<byte> binarList3 = new List<byte>();
+            var carry = 0; // transportul
+            var p = 2; // baza
 
-            for (int i = binarList1.Count-1; i >= 0; i--)
+            for (int i = binarList1.Count - 1; i >= 0; i--)
             {
-                if (binarList1[i] == 1 && binarList2[i] == 1)
+                if (binarList1[i] < binarList2[i])
                 {
-                    binarList3.Add((byte)(0 + carry));
-                    carry = 1;
+                    binarList3.Add((byte)(p + binarList1[i] + carry - binarList2[i]));
+                    carry = -1;
                 }
-                else if ((binarList1[i] == 1 && binarList2[i] == 0) || (binarList1[i] == 0 && binarList2[i] == 1))
+                else
                 {
-                    binarList3.Add((byte)(carry == 1 ? 0 : 1));
-                    if (carry == 1)
-                        carry = 1;
-                    else
-                        carry = 0;
-                }
-                else if (binarList1[i] == 0 && binarList2[i] == 0)
-                {
-                    binarList3.Add((byte)(carry == 1 ? 1 : 0));
+                    binarList3.Add((byte)(binarList1[i] + carry - binarList2[i]));
                     carry = 0;
                 }
             }
             binarList3.Reverse();
-            if (carry == 1)
-                binarList3.Insert(0, 1);
             return binarList3;
         }
 
+
+        List<byte> AddBinary(int number1, int number2)
+        {
+            List<byte> binarList1 = new List<byte>();
+            List<byte> binarList2 = new List<byte>();
+            binarList1 = DecimalToBinary(number1);
+            binarList2 = DecimalToBinary(number2);
+            InsertZeroToLists(binarList1, binarList2);
+            List<byte> binarList3 = new List<byte>();
+            byte carry = 0;
+
+            for (int i = binarList1.Count-1; i >= 0; i--)
+            {
+                if ((binarList1[i] == 1 && binarList2[i] == 0) || (binarList1[i] == 0 && binarList2[i] == 1))
+                {
+                    binarList3.Add((byte)(carry == 1 ? 0 : 1));
+                    carry = (byte)(carry == 1 ? 1 : 0);
+                }
+                else
+                {
+                    binarList3.Add((byte)(carry == 1 ? 1 : 0));
+                    carry = (byte)(binarList1[i] == 1 ? 1 : 0);
+                }
+            }
+            binarList3.Reverse();
+            binarList3.Insert(0, (byte)(carry == 1 ? 1 : 0));
+            return binarList3;
+        }
 
 
         List<byte> RightShift(int number, int noOfPositions)
