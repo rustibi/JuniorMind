@@ -49,28 +49,35 @@ namespace Binary
         public void DecimalBinary_NOT_49()
         {
             byte[] binar = { 0, 0, 1, 1, 1, 0 };
-            CollectionAssert.AreEqual(binar, NOT(49));
+            List<byte> list = new List<Byte> { 1, 1, 0, 0, 0, 1 };
+            CollectionAssert.AreEqual(binar, NOT(list));
         }
 
         [TestMethod]
         public void DecimalBinary_OR_5_3()
         {
             byte[] binar = { 1, 1, 1 };
-            CollectionAssert.AreEqual(binar, OR(5, 3));
+            List<byte> list1 = new List<byte> { 1, 0, 1 };
+            List<byte> list2 = new List<byte> { 1, 1 };
+            CollectionAssert.AreEqual(binar, OR(list1, list2));
         }
 
         [TestMethod]
         public void DecimalBinary_AND_5_3()
         {
             byte[] binar = { 0, 0, 1 };
-            CollectionAssert.AreEqual(binar, AND(5, 3));
+            List<byte> list1 = new List<byte> { 1, 0, 1 };
+            List<byte> list2 = new List<byte> { 1, 1 };
+            CollectionAssert.AreEqual(binar, AND(list1, list2));
         }
 
         [TestMethod]
         public void DecimalBinary_XOR_5_3()
         {
             byte[] binar = { 1, 1, 0 };
-            CollectionAssert.AreEqual(binar, XOR(5, 3));
+            List<byte> list1 = new List<byte> { 1, 0, 1 };
+            List<byte> list2 = new List<byte> { 1, 1};
+            CollectionAssert.AreEqual(binar, XOR(list1, list2));
         }
 
         [TestMethod]
@@ -253,14 +260,9 @@ namespace Binary
 
 
 
-        List<byte> XOR(int number1, int number2)
+        List<byte> XOR(List<byte> binarList1, List<byte> binarList2)
         {
-            List<byte> binarList1 = new List<byte>();
-            List<byte> binarList2 = new List<byte>();
             List<byte> binarList3 = new List<byte>();
-            binarList1 = DecimalToBinary(number1);
-            binarList2 = DecimalToBinary(number2);
-
             InsertZeroToLists(binarList1, binarList2);
 
             for (int i = 0; i < binarList1.Count; i++)
@@ -274,14 +276,9 @@ namespace Binary
         }
 
 
-        List<byte> AND(int number1, int number2)
+        List<byte> AND(List<byte> binarList1, List<byte> binarList2)
         {
-            List<byte> binarList1 = new List<byte>();
-            List<byte> binarList2 = new List<byte>();
             List<byte> binarList3 = new List<byte>();
-            binarList1 = DecimalToBinary(number1);
-            binarList2 = DecimalToBinary(number2);
-
             InsertZeroToLists(binarList1, binarList2);
 
             for (int i = 0; i < binarList1.Count; i++)
@@ -295,14 +292,9 @@ namespace Binary
         }
 
 
-        List<byte> OR (int number1, int number2)
+        List<byte> OR (List<byte> binarList1, List<byte> binarList2)
         {
-            List<byte> binarList1 = new List<byte>();
-            List<byte> binarList2 = new List<byte>();
             List<byte> binarList3 = new List<byte>();
-            binarList1 = DecimalToBinary(number1);
-            binarList2 = DecimalToBinary(number2);
-
             InsertZeroToLists(binarList1, binarList2);
             
             for (int i = 0; i < binarList1.Count; i++)
@@ -316,10 +308,8 @@ namespace Binary
         }
 
    
-        List<byte> NOT (int number)
+        List<byte> NOT (List<byte> binarList)
         {
-            List<byte> binarList = new List<byte>();
-            binarList = DecimalToBinary(number);
             for (int i = 0; i < binarList.Count; i++) 
             {
                 if (binarList[i] == 0)
