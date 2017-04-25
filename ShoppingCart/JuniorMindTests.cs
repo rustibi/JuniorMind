@@ -33,7 +33,8 @@ namespace ShoppingCart
         public void ShouldAddNewProductInCart()
         {
             var shoppingCart = new ShoppingCart[] { new ShoppingCart("Tomatoes", 10), new ShoppingCart("Butter", 15), new ShoppingCart("Potatoes", 5) };
-            AddNewProductInCart(shoppingCart, "Oranges", 1);
+            
+            AddNewProductInCart(ref shoppingCart, "Oranges", 1);
             Assert.AreEqual("Oranges", shoppingCart[3].productName);
         }
 
@@ -41,13 +42,12 @@ namespace ShoppingCart
         public void ShouldDeleteFirstProductFromCart()
         {
             var shoppingCart = new ShoppingCart[] { new ShoppingCart("Tomatoes", 10), new ShoppingCart("Butter", 15), new ShoppingCart("Potatoes", 5) };
-            var shoppingCartTest = new ShoppingCart[] { new ShoppingCart("Butter", 15), new ShoppingCart("Potatoes", 5) };
-            DeleteFirstProductFromCart(shoppingCart);
+            DeleteFirstProductFromCart(ref shoppingCart);
             Assert.AreEqual("Butter", shoppingCart[0].productName);
         }
 
 
-        public void DeleteFirstProductFromCart(ShoppingCart[] shoppingCart)
+        public void DeleteFirstProductFromCart(ref ShoppingCart[] shoppingCart)
         {
             ShoppingCart[] shoppingCartNew = new ShoppingCart[shoppingCart.Length - 1];
             for (int i = 1; i < shoppingCart.Length; i++)
@@ -55,10 +55,9 @@ namespace ShoppingCart
                 shoppingCartNew[i - 1] = shoppingCart[i];
             }
             shoppingCart = shoppingCartNew;
-
         }
 
-        public void AddNewProductInCart(ShoppingCart[] shoppingCart, string name, double price)
+        public void AddNewProductInCart(ref ShoppingCart[] shoppingCart, string name, double price)
         {
 
             ShoppingCart[] shoppingCartNew = new ShoppingCart[shoppingCart.Length + 1];
@@ -118,8 +117,6 @@ namespace ShoppingCart
             {
                 this.productName = productName;
                 this.productCost = productCost;
-
-
             }
         }
 
