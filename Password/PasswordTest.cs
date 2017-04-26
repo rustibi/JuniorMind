@@ -36,7 +36,7 @@ namespace Password
         [TestMethod]
         public void GeneratePasswordLengthTest()
         {
-            Password password = new Password (3, 3, 3, 3, true, true);
+            Password password = new Password(3, 3, 3, 3, true, true);
             Assert.AreEqual(12, GetPassword(password).Length);
         }
 
@@ -52,7 +52,7 @@ namespace Password
         public void GeneratePasswordLengthTestforEachCategory()
         {
             Password password = new Password(3, 4, 5, 6, false, false);
-            List<int> results = new List<int> { 3, 4, 5, 6};
+            List<int> results = new List<int> { 3, 4, 5, 6 };
             string result = GetPassword(password);
             var a = CountElements(result);
             CollectionAssert.AreEqual(results, a);
@@ -78,10 +78,10 @@ namespace Password
                 {
                     countNumber++;
                 }
-                else 
+                else
                 {
                     countSymbols++;
-                }    
+                }
             }
             results.Add(countLower);
             results.Add(countUpper);
@@ -92,7 +92,7 @@ namespace Password
 
 
 
-        Random random = new Random(); 
+        Random random = new Random();
         public char GenerateChar(char start, char end)
         {
             return (char)random.Next(start, end);
@@ -125,12 +125,11 @@ namespace Password
             int i = 0;
             while (i < count)
             {
-                if (ignoreAmbigChars)
-                    result[i++] = acceptedSymbols[random.Next(0, acceptedSymbols.Length-1)];
-                else
-                    result[i++] = allSymbols[random.Next(0, allSymbols.Length-1)];
+                result[i++] = ignoreAmbigChars
+                    ? acceptedSymbols[random.Next(0, acceptedSymbols.Length - 1)]
+                    : allSymbols[random.Next(0, allSymbols.Length - 1)];
             }
-            return new string(result); 
+            return new string(result);
         }
 
 
