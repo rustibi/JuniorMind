@@ -16,36 +16,48 @@ namespace ClockAlarm
         [TestMethod]
         public void TestStructDays1()
         {
-            var alarm = new Alarm[] { new Alarm(Days.Monday, 6) };
-            List<bool> testResult = new List<bool>{ true };
+            Alarm alarm = new Alarm (Days.Monday, 6);
+            bool testResult = true;
             var functionResult = IsAlarm(alarm);
-            CollectionAssert.AreEqual(testResult, functionResult);
+            Assert.AreEqual(testResult, functionResult);
         }
 
         [TestMethod]
         public void TestStructDays2()
         {
-            var alarm = new Alarm[] { new Alarm(Days.Monday, 6), new Alarm(Days.Thursday, 6), new Alarm(Days.Wednesday, 6) };
-            List<bool> testResult = new List<bool> { true, true, true };
+            Alarm alarm = new Alarm (AddAlarm(Days.Monday | Days.Thursday | Days.Wednesday), 6);
+            bool testResult =  true;
             var functionResult = IsAlarm(alarm);
-            CollectionAssert.AreEqual(testResult, functionResult);
+            Assert.AreEqual(testResult, functionResult);
+        }
+
+        [TestMethod]
+        public void TestStructDays3()
+        {
+            Alarm alarm = new Alarm(AddAlarm(Days.Monday | Days.Thursday | Days.Wednesday), 0);
+            bool testResult = false;
+            var functionResult = IsAlarm(alarm);
+            Assert.AreEqual(testResult, functionResult);
+        }
+
+        [TestMethod]
+        public void TestStructDays4()
+        {
+            AddAlarm(Days.Monday);
+            Assert.AreEqual(Days.Friday|Days.Sunday, AddAlarm(Days.Friday|Days.Sunday));
         }
 
 
-        public List<bool> IsAlarm(Alarm[] alarm)
+
+        public bool IsAlarm(Alarm alarm)
         {
-            List<bool> result = new List<bool>();
-            int i = 0;
-            while (i < alarm.Length)
-            {
-                if (alarm[i++].hour != 0)
-                {
-                    result.Add(true);
-                }
-                else
-                    result.Add(false);     
-            }  
-            return result;
+            return (alarm.hour != 0);
+        }
+
+
+        Days AddAlarm(Days day)
+        {
+            return day;
         }
 
 
