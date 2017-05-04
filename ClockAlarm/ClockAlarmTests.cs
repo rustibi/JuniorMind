@@ -1,54 +1,45 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace ClockAlarm
 {
     [TestClass]
     public class ClockAlarmTests
     {
-        [TestMethod]
-        public void TestEnumDays()
-        {
-            Assert.AreEqual(1, (int)Days.Monday);
-        }
 
         [TestMethod]
-        public void TestStructDays1()
+        public void TestAlarm3Days()
         {
-            Alarm alarm = new Alarm (Days.Monday, 6);
-            bool testResult = true;
-            var functionResult = IsAlarm(alarm);
-            Assert.AreEqual(testResult, functionResult);
+            var alarm = new Alarm[] { new Alarm(Days.Monday | Days.Thursday | Days.Wednesday, 6) };
+            Assert.AreEqual(true, IsAlarm(alarm, Days.Monday, 6));
         }
 
         [TestMethod]
-        public void TestStructDays2()
+        public void TestAlarm3Days1Day()
         {
-            Alarm alarm = new Alarm (Days.Monday | Days.Thursday | Days.Wednesday, 6);
-            bool testResult =  true;
-            var functionResult = IsAlarm(alarm);
-            Assert.AreEqual(testResult, functionResult);
-        }
-
-        [TestMethod]
-        public void TestStructDays3()
-        {
-            Alarm alarm = new Alarm(Days.Monday | Days.Thursday | Days.Wednesday, 0);
-            bool testResult = false;
-            var functionResult = IsAlarm(alarm);
-            Assert.AreEqual(testResult, functionResult);
+            var alarm = new Alarm[] {new Alarm (Days.Monday | Days.Thursday | Days.Wednesday, 16),
+                new Alarm (Days.Sunday, 10)};
+            Assert.AreEqual(true, IsAlarm(alarm, Days.Sunday, 10));
+            Assert.AreEqual(false, IsAlarm(alarm, Days.Friday, 16));
         }
 
 
 
-        public bool IsAlarm(Alarm alarm, DateTime currentTime)
+        public bool IsAlarm(Alarm[] alarm, Days day, int hour)
         {
-
-            return (alarm.hour != 0);
+            for (int i = 0; i < alarm.Length; i++)
+            {
+                if ((alarm[i].day & day) != 0 && (alarm[i].hour == hour))
+                {
+                    return true;
+                } 
+            }
+            return false;
         }
 
-
+        
         [Flags]
         public enum Days
         {
@@ -70,6 +61,7 @@ namespace ClockAlarm
             {
                 this.day = day;
                 this.hour = hour;
+                
             }
         }
     }
