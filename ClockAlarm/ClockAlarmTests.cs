@@ -25,7 +25,7 @@ namespace ClockAlarm
         [TestMethod]
         public void TestStructDays2()
         {
-            Alarm alarm = new Alarm (AddAlarm(Days.Monday | Days.Thursday | Days.Wednesday), 6);
+            Alarm alarm = new Alarm (Days.Monday | Days.Thursday | Days.Wednesday, 6);
             bool testResult =  true;
             var functionResult = IsAlarm(alarm);
             Assert.AreEqual(testResult, functionResult);
@@ -34,30 +34,18 @@ namespace ClockAlarm
         [TestMethod]
         public void TestStructDays3()
         {
-            Alarm alarm = new Alarm(AddAlarm(Days.Monday | Days.Thursday | Days.Wednesday), 0);
+            Alarm alarm = new Alarm(Days.Monday | Days.Thursday | Days.Wednesday, 0);
             bool testResult = false;
             var functionResult = IsAlarm(alarm);
             Assert.AreEqual(testResult, functionResult);
         }
 
-        [TestMethod]
-        public void TestStructDays4()
+
+
+        public bool IsAlarm(Alarm alarm, DateTime currentTime)
         {
-            AddAlarm(Days.Monday);
-            Assert.AreEqual(Days.Friday|Days.Sunday, AddAlarm(Days.Friday|Days.Sunday));
-        }
 
-
-
-        public bool IsAlarm(Alarm alarm)
-        {
             return (alarm.hour != 0);
-        }
-
-
-        Days AddAlarm(Days day)
-        {
-            return day;
         }
 
 
