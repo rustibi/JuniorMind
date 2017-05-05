@@ -7,6 +7,21 @@ namespace Intersection
     public class IntersectionTests
     {
         [TestMethod]
+        public void ShouldIntersectAtPoint00()
+        {
+            Directions[] directions = { Directions.V, Directions.N, Directions.E, Directions.S };
+            Point a = new Point(0, 0);
+            Assert.AreEqual(a, MoveAround(directions));
+        }
+
+        [TestMethod]
+        public void ShouldNotIntersect()
+        {
+            Directions[] directions = { Directions.V, Directions.N, Directions.E };
+            Assert.IsNull(MoveAround(directions));
+        }
+
+        [TestMethod]
         public void ShouldIntersectAtPoint01()
         {
             Directions[] directions = { Directions.N, Directions.N, Directions.E, Directions.E,
@@ -24,48 +39,46 @@ namespace Intersection
             Assert.AreEqual(a, MoveAround(directions));
         }
 
-        [TestMethod]
-        public void ShouldGetOneDirection()
+
+        Point Move(Point point, Directions direction)
         {
-            Directions directions = Directions.E;
-            Point a = new Point(1, 0);
-            Assert.AreEqual(a, GetDirections(directions));
+            if (direction == Directions.N)
+                point.y += 1;
+            else if (direction == Directions.S)
+                point.y -= 1;
+            else if (direction == Directions.V)
+                point.x -= 1;
+            else if (direction == Directions.E)
+                point.x += 1;
+            return point;
         }
 
-        Point GetDirections(Directions directions)
-        {
-            Point intersection = new Point(0, 0);
-            if (directions == Directions.N)
-                intersection.y += 1;
-            else if (directions == Directions.S)
-                intersection.y -= 1;
-            else if (directions == Directions.V)
-                intersection.x -= 1;
-            else if (directions == Directions.E)
-                intersection.x += 1;
-            return intersection;
-        }
-
-        Point MoveAround(Directions[] directions)
+        Point? MoveAround(Directions[] directions)
         {
             Point intersection = new Point(0, 0);
             Point[] coordFound = new Point[directions.Length];
             for (int i = 0; i < directions.Length; i++)
             {
-                intersection = GetDirections(directions[i]);
-                for (int j = 0; j < coordFound.Length; j++)
-                {
-                    if ((intersection.x == coordFound[j].x) && (intersection.y == coordFound[j].y))
-                        return intersection;
-                }
-                coordFound[i].x = intersection.x;
-                coordFound[i].y = intersection.y;
+                intersection = Move(intersection, directions[i]);
+                if (ContainsPoint(intersection, coordFound))
+                    return intersection;
+                coordFound[i] = intersection;
             }
-            return new Point(0, 0);
+            return null;
+        }
+
+        private static bool ContainsPoint(Point toFind, Point[] points)
+        {
+            foreach (var point in points)
+            {
+                if (point.Equals(toFind))
+                    return true;
+            }
+
+            return false;
         }
 
 
-        
         public enum Directions { N, S, V, E}
 
         struct Point
@@ -76,6 +89,10 @@ namespace Intersection
             {
                 this.x = x;
                 this.y = y;
+            }
+            public bool IsEqual(Point other)
+            {
+                return x == other.x && y == other.y;
             }
         }
     }
