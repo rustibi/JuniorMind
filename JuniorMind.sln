@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{DE5B0B92-91B4-4426-94CC-EA7D468A08FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pascal", "Pascal\Pascal.csproj", "{B9D14CC9-7ADA-4133-8894-A55FC605B700}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DE5B0B92-91B4-4426-94CC-EA7D468A08FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE5B0B92-91B4-4426-94CC-EA7D468A08FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE5B0B92-91B4-4426-94CC-EA7D468A08FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE5B0B92-91B4-4426-94CC-EA7D468A08FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D14CC9-7ADA-4133-8894-A55FC605B700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D14CC9-7ADA-4133-8894-A55FC605B700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D14CC9-7ADA-4133-8894-A55FC605B700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D14CC9-7ADA-4133-8894-A55FC605B700}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
