@@ -9,30 +9,34 @@ namespace Calculator
         [TestMethod]
         public void ShouldAddTwoNumbersAndReturnFour()
         {
-            Assert.AreEqual(4, PrefixCalculator("+22"));
+            Assert.AreEqual(4, PrefixCalculator("+ 2 2"));
         }
 
         [TestMethod]
-        public void ShouldCalculateFourNumbersAndReturn()
+        public void ShouldCalculateThreeNumbersAndReturnFour()
         {
-            Assert.AreEqual(4, PrefixCalculator("*+112"));
+            Assert.AreEqual(4, PrefixCalculator("* + 1 1 2"));
         }
+
+
+        [TestMethod]
+        public void ShouldCalculateMoreComplexNumbers()
+        {
+            Assert.AreEqual(1549.41, PrefixCalculator("+ / * + 56 45 46 3 - 1 0.25"),1);
+        }
+
 
 
         double PrefixCalculator(string input)
         {
-            string[] elements = new string[input.Length];
+            string[] elements = input.Split(' ');
             int i = 0;
-            for (int j = 0; j < input.Length; j++)
-                elements[j] = input[j].ToString();
             return PrefixCalculator(elements, ref i);
-           
         }
-
+        
 
         public double PrefixCalculator(string[] elements, ref int i)
         {
-           
             string oneElement = elements[i];
             i++;
             double result = 0;
@@ -51,8 +55,5 @@ namespace Calculator
                     return PrefixCalculator(elements, ref i) / PrefixCalculator(elements, ref i);
             }
         }   
-
-
-
     }
 }
