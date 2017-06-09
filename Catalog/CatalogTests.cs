@@ -8,7 +8,7 @@ namespace Catalog
     {
 
         [TestMethod]
-        public void ShouldOrderStudentsAlphabetically()
+        public void ShouldSortStudentsbyAverageGrade()
         {
             Student[] students = new Student[]
             {
@@ -17,7 +17,6 @@ namespace Catalog
                     new Material("Math", new int[] { 7, 7}),
                     new Material("English", new int[] { 7, 7}),
                     new Material("French", new int[] { 7, 7})
-
                 }),
                 new Student("Raul", new Material[]
                 {
@@ -38,11 +37,24 @@ namespace Catalog
                     new Material("French", new int[] { 6, 6})
                 })
             };
+            var result0 = new string[] { "Alin", "Paul", "Raul", "Zoro" };
+            var result1 = new StudentAndAverageGrade[]
+            {
+                new StudentAndAverageGrade("Alin", 8),
+                new StudentAndAverageGrade("Paul", 7),
+                new StudentAndAverageGrade("Raul", 6),
+                new StudentAndAverageGrade("Zoro", 6)
+            };
 
-            var result = new string[] {"Alin", "Paul", "Raul", "Zoro" };
-            var function = SortAlphabetically(students);
-            Assert.AreEqual(result[0], function[0].studentName);
-            Assert.AreEqual(result[3], function[3].studentName);
+            var function0 = SortAlphabetically(students);
+            Assert.AreEqual(result0[0], function0[0].studentName);
+            Assert.AreEqual(result0[3], function0[3].studentName);
+            var function1 = SortStudentsbyAverageGrade(students);
+            CollectionAssert.AreEqual(result1, function1);
+            var function2 = FindStudentsWithLowestAverageGrade(students);
+            CollectionAssert.AreEqual(new StudentAndAverageGrade[] { new StudentAndAverageGrade("Raul", 6), new StudentAndAverageGrade("Zoro", 6) }, function2);
+            var function3 = FindStudentWitheSpecificAverageGrade(students, 7);
+            CollectionAssert.AreEqual(new StudentAndAverageGrade[] { new StudentAndAverageGrade("Paul", 7) }, function3);
         }
 
 
@@ -73,58 +85,129 @@ namespace Catalog
                     new Material("Philosophy", new int[] { 6, 6, 6})
                 });
             Assert.AreEqual(7.41, CalculateTheAverageGradeForOneStudent(student), 1);
+            Assert.AreEqual(5, CountTheTenGradesFromAStudent(student));
+        }
+
+
+       [TestMethod]
+       public void ShouldCountTheTenGradesFromAMaterial()
+        {
+            var material = new Material("Info", new int[] { 10, 8, 7, 10, 2, 10, 10, 5 });
+            Assert.AreEqual(4, CountTheTenGradesFromAMaterial(material));
         }
 
 
         [TestMethod]
-        public void ShouldSortStudentsbyAverageGrade()
+        public void ShouldReturnStudentsWithMostTenGrades()
         {
             Student[] students = new Student[]
             {
                 new Student("Paul", new Material[]
                 {
-                    new Material("Math", new int[] { 7, 7}),
-                    new Material("English", new int[] { 7, 7}),
-                    new Material("French", new int[] { 7, 7})
-
+                    new Material("Math", new int[] { 10, 7}),
+                    new Material("English", new int[] { 7, 10}),
+                    new Material("French", new int[] { 10, 7})
                 }),
                 new Student("Raul", new Material[]
                 {
-                    new Material("Math", new int[] { 6, 6}),
+                    new Material("Math", new int[] { 10, 6}),
                     new Material("English", new int[] { 6, 6}),
-                    new Material("French", new int[] { 6, 6})
+                    new Material("French", new int[] { 6, 10})
                 }),
                 new Student("Alin", new Material[]
                 {
-                    new Material("Math", new int[] { 8, 8}),
-                    new Material("English", new int[] { 8, 8}),
-                    new Material("French", new int[] { 8, 8})
+                    new Material("Math", new int[] { 10, 8}),
+                    new Material("English", new int[] { 10, 8}),
+                    new Material("French", new int[] { 10, 10})
                 }),
                  new Student("Zoro", new Material[]
                 {
-                    new Material("Math", new int[] { 6, 6}),
-                    new Material("English", new int[] { 6, 6}),
-                    new Material("French", new int[] { 6, 6})
+                    new Material("Math", new int[] { 10, 6}),
+                    new Material("English", new int[] { 6, 10}),
+                    new Material("French", new int[] { 10, 10})
                 })
             };
-
-            var result = new StudentAndAverageGrade[]
+            var result = new StudentAndNoOfTen[]
             {
-                new StudentAndAverageGrade("Alin", 8),
-                new StudentAndAverageGrade("Paul", 7),
-                new StudentAndAverageGrade("Raul", 6),
-                new StudentAndAverageGrade("Zoro", 6)
+                new StudentAndNoOfTen("Alin", 4),
+                new StudentAndNoOfTen("Zoro", 4)
             };
-            var function = SortStudentsbyAverageGrade(students);
+            var function = ReturnStudentsWithMostTenGrades(students);
             CollectionAssert.AreEqual(result, function);
-            var function2 = FindStudentsWithLowestAverageGrade(students);
-            CollectionAssert.AreEqual(new StudentAndAverageGrade[] {
-                new StudentAndAverageGrade("Raul", 6), new StudentAndAverageGrade("Zoro", 6) }, function2);
         }
 
-       
 
+
+        public StudentAndNoOfTen[] ReturnStudentsWithMostTenGrades(Student[] students)
+        {
+            var max = CountTheTenGradesFromAStudent(students[0]);
+            StudentAndNoOfTen[] bestStudents = new StudentAndNoOfTen[0];
+            var counter = -1;
+            for (int i = 1; i < students.Length; i++)
+            {
+                if (max < CountTheTenGradesFromAStudent(students[i]))
+                {
+                    max = CountTheTenGradesFromAStudent(students[i]);
+                }
+            }
+            for (int i = 0; i < students.Length; i++)
+            {
+                if (max == CountTheTenGradesFromAStudent(students[i]))
+                {
+                    Array.Resize(ref bestStudents, bestStudents.Length + 1);
+                    counter++;
+                    bestStudents[counter] = new StudentAndNoOfTen(students[i].studentName, max);
+                }
+            }
+            return bestStudents;
+        }
+
+
+
+        public int CountTheTenGradesFromAStudent(Student student)
+        {
+            var counter = 0;
+            for(int i = 0; i < student.materials.Length; i++)
+            {
+                counter = counter + CountTheTenGradesFromAMaterial(student.materials[i]);
+            }
+            return counter;
+        }
+
+
+
+        public int CountTheTenGradesFromAMaterial (Material material)
+        {
+            var counter = 0;
+            for(int i = 0; i < material.grade.Length; i++)
+            {
+                if(material.grade[i] == 10)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+
+
+        public StudentAndAverageGrade[] FindStudentWitheSpecificAverageGrade(Student[] students, int averageGrade)
+        {
+            StudentAndAverageGrade[] findTheStudent = new StudentAndAverageGrade[0];
+            var counter = -1;
+            for(int i = 0; i < students.Length; i++)
+            {
+                if (averageGrade == CalculateTheAverageGradeForOneStudent(students[i]))
+                {
+                    Array.Resize(ref findTheStudent, findTheStudent.Length + 1);
+                    counter++;
+                    findTheStudent[counter] = new StudentAndAverageGrade(students[i].studentName, averageGrade);
+                }
+            }
+            return findTheStudent;
+        }
     
+
 
         public StudentAndAverageGrade[] FindStudentsWithLowestAverageGrade(Student[] students)
         {
@@ -154,7 +237,6 @@ namespace Catalog
 
 
 
-
         public StudentAndAverageGrade[] SortStudentsbyAverageGrade (Student[] students)
         {
             for(int i = 0; i < students.Length; i++)
@@ -178,6 +260,7 @@ namespace Catalog
         }
 
 
+
         public double CalculateTheAverageGradeForOneStudent(Student student)
         {
             double average = 0;
@@ -189,6 +272,7 @@ namespace Catalog
             }
             return average/count;
         }
+
 
 
         public double CalculateTheAverageGradesForOneMaterial(Material materials)
@@ -221,13 +305,14 @@ namespace Catalog
         }
 
 
-
         public void Change (ref Student firstName, ref Student secondName)
         {
             var temp = firstName;
             firstName = secondName;
             secondName = temp;
         }
+
+
 
         public void Change(ref string firstName, ref string secondName)
         {
@@ -247,6 +332,8 @@ namespace Catalog
                 this.grade = grade;
             }
         }
+
+
 
         public struct Student
         {
@@ -273,5 +360,15 @@ namespace Catalog
 
 
 
+        public struct StudentAndNoOfTen
+        {
+            public string studentName;
+            public double noOfTens;
+            public StudentAndNoOfTen(string studentName, double noOfTens)
+            {
+                this.studentName = studentName;
+                this.noOfTens = noOfTens;
+            }
+        }
     }
 }
